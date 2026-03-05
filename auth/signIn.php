@@ -1,3 +1,7 @@
+<?php
+include_once __DIR__ . "/../server/controller/signInServer.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +12,17 @@
 </head>
 
 <body>
+    <?php
+    if (!empty($_SESSION["err"])) {
+        foreach ($_SESSION["err"] as $err) {
+            echo $err;
+        }
+        unset($_SESSION["err"]);
+    }
+    ?>
     <h1>Sign In</h1>
     <form action="/feeManager/server/controller/signInServer.php" method="post">
-        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="username" placeholder="Admin Name">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="pass" placeholder="Password">
         <input type="text" name="qna" placeholder="QNA">

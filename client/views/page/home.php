@@ -1,7 +1,3 @@
-<?php
-include_once "./server/config/db.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
