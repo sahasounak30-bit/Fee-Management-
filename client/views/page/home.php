@@ -9,6 +9,7 @@
     <h1>Home Page</h1>
     <a href="/feeManager/client/views/page/fetchAll.php">See All Students</a>
     <a href="/feeManager/client/views/page/feeEntry.php">Fee Entery</a>
+    <a href="/feeManager/client/views/page/studentCreate.php">Create Student</a>
     <a href="/feeManager/server/controller/signOutServer.php">Sign Out</a>
 </body>
 </html>
