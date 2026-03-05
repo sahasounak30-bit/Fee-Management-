@@ -1,0 +1,17 @@
+<?php
+include_once "./server/config/db.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <a href="/feeManager/auth/signIn.php">Sign in</a>
+    <a href="/feeManager/auth/dev.php">Dev</a>
+</body>
+</html>
