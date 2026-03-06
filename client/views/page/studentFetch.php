@@ -1,4 +1,7 @@
 <?php
+// session start
+session_start();
+
 // fetch file link
 include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
 ?>
@@ -14,6 +17,17 @@ include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
 
 <body>
     <h1>All Students</h1>
+
+    <?php if (!empty($_SESSION["err"])) { ?>
+        <?php echo $_SESSION["err"]; ?>
+        <?php unset($_SESSION["err"]); ?>
+    <?php } ?>
+
+    <?php if (!empty($_SESSION["success"])) { ?>
+        <?php echo $_SESSION["success"]; ?>
+        <?php unset($_SESSION["success"]); ?>
+    <?php } ?>
+
     <?php if (!empty($row)) { ?>
         <?php foreach ($row as $r) { ?>
 
@@ -30,8 +44,11 @@ include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
                 <p><strong>Admission:</strong> <?php echo $r['admition_date']; ?></p>
             </div>
             <div class="studentActions">
-                <button class="viewBtn">View</button>
-                <button class="deleteBtn">Delete</button>
+                <button class="viewBtn" name="viewBtn">View</button>
+                <form action="/feeManager/server/model/studentDeleteServer.php" method="post">
+                    <input type="text" style="display: none;" name="id" value="<?php echo $r["id"]; ?>">
+                    <button class="deleteBtn" name="deleteBtn">Delete</button>
+                </form>
             </div>
 
         <?php } ?>
