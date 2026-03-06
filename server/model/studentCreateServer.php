@@ -61,7 +61,7 @@ if (isset($_POST["create_student"])) {
             if (!empty($result)) { // success message
 
                 $_SESSION["success"] = "student creation successfully";
-                header("Location: /feeManager/client/views/page/fetchAll.php");
+                header("Location: /feeManager/client/views/page/studentFetch.php");
                 exit();
 
             } else { // Somthing is wrong
