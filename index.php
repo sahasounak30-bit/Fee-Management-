@@ -1,6 +1,7 @@
 <?php
 include_once "./server/config/db.php";
 include_once __DIR__ . "../server/controller/signInServer.php";
+include_once __DIR__ . "/auth/session.php";
 
 if (!empty($_SESSION["signIn"])) {
 
