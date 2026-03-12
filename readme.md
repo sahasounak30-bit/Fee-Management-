@@ -22,3 +22,29 @@ CREATE TABLE students (
     created_at timestamp DEFAULT CURRENT_TIMESTAMP,
     update_at timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+# student fee
+CREATE TABLE fee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    fee_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
+
+# student fee recored
+CREATE TABLE IF NOT EXISTS fee_payments (
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    student_id   INT           NOT NULL,
+    amount_paid  DECIMAL(10,2) NOT NULL,
+    payment_date DATE          NOT NULL,
+    fee_month    VARCHAR(30)    NOT NULL,   -- YYYY-MM  e.g. 2025-03
+    status       ENUM('pending', 'partial','paid') DEFAULT 'pending',
+    received_by  int NOT NULL,
+    created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (received_by) REFERENCES admin(id),
+    UNIQUE KEY unique_fee (student_id, fee_month) 
+);
