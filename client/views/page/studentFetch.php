@@ -19,7 +19,9 @@ include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
     <h1>All Students</h1>
 
     <?php if (!empty($_SESSION["err"])) { ?>
-        <?php echo $_SESSION["err"]; ?>
+        <?php foreach ($_SESSION["err"] as $err) { ?>
+            <?php echo $err; ?>
+        <?php } ?>
         <?php unset($_SESSION["err"]); ?>
     <?php } ?>
 
@@ -36,19 +38,23 @@ include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
                 <div class="header">
                     <h2><?php echo $r["first_name"] . " " . $r["last_name"]; ?></h2>
                 </div>
-            </div>
-            <div class="studentInfo">
-                <p><strong>Phone:</strong> <?php echo $r['phone']; ?></p>
-                <p><strong>DOB:</strong> <?php echo $r['dob']; ?></p>
-                <p><strong>Gender:</strong> <?php echo $r['gender']; ?></p>
-                <p><strong>Admission:</strong> <?php echo $r['admition_date']; ?></p>
-            </div>
-            <div class="studentActions">
-                <button class="viewBtn" name="viewBtn">View</button>
-                <form action="/feeManager/server/model/studentDeleteServer.php" method="post">
-                    <input type="text" style="display: none;" name="id" value="<?php echo $r["id"]; ?>">
-                    <button class="deleteBtn" name="deleteBtn">Delete</button>
-                </form>
+                <div class="studentInfo">
+                    <p><strong>Phone:</strong> <?php echo $r['phone']; ?></p>
+                    <p><strong>DOB:</strong> <?php echo $r['dob']; ?></p>
+                    <p><strong>Gender:</strong> <?php echo $r['gender']; ?></p>
+                    <p><strong>Admission:</strong> <?php echo $r['admition_date']; ?></p>
+                </div>
+                <div class="studentActions">
+                    <button class="viewBtn" name="viewBtn">View</button>
+                    <form action="/feeManager/server/model/studentDeleteServer.php" method="post">
+                        <input type="text" style="display: none;" name="id" value="<?php echo $r["id"]; ?>">
+                        <button class="deleteBtn" name="deleteBtn">Delete</button>
+                    </form>
+                    <form action="/feeManager/server/model/studentUpdateServer.php" method="post">
+                        <input type="text" style="display: none;" name="id" value="<?php echo $r["id"]; ?>">
+                        <button class="updateBtn" name="updateBtn">Update</button>
+                    </form>
+                </div>
             </div>
 
         <?php } ?>
