@@ -54,5 +54,6 @@ include_once __DIR__ . "/../../../server/model/feeCreateServer.php";
     <?php } ?>
 
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 
 </html>

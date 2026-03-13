@@ -36,4 +36,5 @@ if(isset($_GET["student_id"])){
         <button name="set_fee">Set Fee</button>
     </form>
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 </html>

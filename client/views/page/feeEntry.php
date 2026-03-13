@@ -95,5 +95,6 @@ if (isset($_GET["student_id"])) {
         <button name="fee_entry">Entry Fee</button>
     </form>
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 
 </html>

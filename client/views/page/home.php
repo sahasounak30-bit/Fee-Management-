@@ -12,4 +12,6 @@
     <a href="/feeManager/client/views/page/studentCreate.php">Create Student</a>
     <a href="/feeManager/server/controller/signOutServer.php">Sign Out</a>
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
+
 </html>

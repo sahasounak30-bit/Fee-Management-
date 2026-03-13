@@ -62,5 +62,6 @@ include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
             <?php echo $err; ?>
     <?php } ?>
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 
 </html>

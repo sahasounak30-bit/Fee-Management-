@@ -98,5 +98,6 @@ if (empty($_SESSION["student"])) {
     </form>
 
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 
 </html>

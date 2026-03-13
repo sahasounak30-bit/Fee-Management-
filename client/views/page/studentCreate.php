@@ -91,5 +91,6 @@ include_once __DIR__ . "/../../../server/model/studentCreateServer.php";
     </form>
 
 </body>
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 
 </html>
