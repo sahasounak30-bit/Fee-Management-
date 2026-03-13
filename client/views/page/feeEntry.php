@@ -27,7 +27,7 @@ if (isset($_GET["student_id"])) {
     // fee payment
     $sqlFeePay = "SELECT * FROM fee_payments 
                   WHERE student_id = ? 
-                  ORDER BY fee_month ASC 
+                  ORDER BY payment_date ASC 
                   LIMIT 1";
     $stmtFeePay = mysqli_prepare($conn, $sqlFeePay);
     mysqli_stmt_bind_param($stmtFeePay, "i", $id);
@@ -77,34 +77,14 @@ if (isset($_GET["student_id"])) {
         <div>
             <?php
             if (!empty($studentFeePay)) {
-                echo "Last Payment: " . $studentFeePay["fee_month"] . ", " . $studentFeePay["fee_year"];
+                echo "Last Payment: " . $studentFeePay["payment_date"] . " (yyyy/mm/dd)";
             } else {
                 echo "No Fee Entry Before, Set a Month";
             }
             ?>
         </div>
-        <label>Select Month: </label>
-        <select name="month">
-            <option value="JAN">JAN</option>
-            <option value="FEB">FEB</option>
-            <option value="MAR">MAR</option>
-            <option value="APR">APR</option>
-            <option value="MAY">MAY</option>
-            <option value="JUN">JUN</option>
-            <option value="JUl">JUl</option>
-            <option value="AUG">AUG</option>
-            <option value="SEP">SEP</option>
-            <option value="OCT">OCT</option>
-            <option value="NOV">NOV</option>
-            <option value="DEC">DEC</option>
-        </select>
-
-        <label>Select Year: </label>
-        <select name="year">
-            <?php for ($y = 2026; $y <= 2050; $y++) { ?>
-                <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
-            <?php } ?>
-        </select>
+        <label>Recipt Date</label>
+        <input type="date" name="fee_date">
         <input type="text" name="fee_amount" value="<?php
         if (!empty($studentFee)) {
             echo $studentFee["fee_amount"];

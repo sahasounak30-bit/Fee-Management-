@@ -39,13 +39,11 @@ CREATE TABLE IF NOT EXISTS fee_payments (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     student_id   INT           NOT NULL,
     amount_paid  DECIMAL(10,2) NOT NULL,
-    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    fee_month    VARCHAR(30)    NOT NULL,   
-    fee_year    VARCHAR(30)    NOT NULL,   
+    payment_date varchar(50) NOT NULL,
     status       ENUM('pending', 'partial','paid') DEFAULT 'pending',
     received_by  int NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (received_by) REFERENCES admin(id),
-    UNIQUE KEY unique_fee (student_id, fee_month) 
+    UNIQUE KEY unique_fee (student_id) 
 );

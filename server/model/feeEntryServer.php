@@ -9,15 +9,22 @@ if (isset($_POST["fee_entry"])) {
 
     $id = intval($_POST["id"]);
     $fee_amount = floatval($_POST["fee_amount"]);
-    $fee_month = $_POST["month"];
-    $fee_year = $_POST["year"];
+    $recipt_date = $_POST["fee_date"];
     $status = "paid";
     $admin = $_SESSION["signIn"];
 
+    if (empty($_POST["fee_date"])) {
+
+        $_SESSION["err"][] = "Pleace Select Date";
+        header("Location: /feeManager/client/views/page/feeEntry.php?student_id=" . $id);
+        exit;
+
+    }
+
     // check duplicate payment
-    $check_sql = "SELECT id FROM fee_payments WHERE student_id=? AND fee_month=? AND fee_year = ?";
+    $check_sql = "SELECT id FROM fee_payments WHERE student_id=? AND payment_date=? ";
     $check_stmt = mysqli_prepare($conn, $check_sql);
-    mysqli_stmt_bind_param($check_stmt, "iss", $id, $fee_month, $fee_year);
+    mysqli_stmt_bind_param($check_stmt, "is", $id, $recipt_date);
     mysqli_stmt_execute($check_stmt);
     $check_result = mysqli_stmt_get_result($check_stmt);
 
@@ -30,11 +37,11 @@ if (isset($_POST["fee_entry"])) {
 
     // insert payment
     $sql = "INSERT INTO fee_payments 
-            (student_id, amount_paid, fee_month, fee_year, status, received_by)
-            VALUES (?, ?, ?, ?, ?, ?)";
+            (student_id, amount_paid, payment_date, status, received_by)
+            VALUES (?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "idsssi", $id, $fee_amount, $fee_month, $fee_year, $status, $admin);
+    mysqli_stmt_bind_param($stmt, "idssi", $id, $fee_amount, $recipt_date, $status, $admin);
 
     if (mysqli_stmt_execute($stmt)) {
 
@@ -42,7 +49,7 @@ if (isset($_POST["fee_entry"])) {
 
     } else {
 
-        $_SESSION["error"][] = "Payment Failed";
+        $_SESSION["err"][] = "Payment Failed";
     }
 
     header("Location: /feeManager/client/views/page/feePage.php");
