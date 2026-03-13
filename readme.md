@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS fee_payments (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     student_id   INT           NOT NULL,
     amount_paid  DECIMAL(10,2) NOT NULL,
-    payment_date DATE          NOT NULL,
-    fee_month    VARCHAR(30)    NOT NULL,   -- YYYY-MM  e.g. 2025-03
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fee_month    VARCHAR(30)    NOT NULL,   
+    fee_year    VARCHAR(30)    NOT NULL,   
     status       ENUM('pending', 'partial','paid') DEFAULT 'pending',
     received_by  int NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
