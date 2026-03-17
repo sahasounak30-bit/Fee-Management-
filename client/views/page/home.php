@@ -101,7 +101,6 @@ include_once __DIR__ . "/../../../auth/session.php";
     FEE MANAGER &nbsp;·&nbsp; <?= date('Y') ?> &nbsp;·&nbsp; ADMIN PANEL
 </div>
 
-<script src="/feeManager/client/public/js/shortcut.js"></script>
 <script src="/feeManager/client/public/js/home.js"></script>
 
 </body>
