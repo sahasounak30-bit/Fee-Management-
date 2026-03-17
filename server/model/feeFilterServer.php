@@ -1,7 +1,8 @@
 <?php
 // sesstion start
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // db link fire
 include_once __DIR__ . "/../../server/config/db.php";
 

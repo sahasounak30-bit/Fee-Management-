@@ -1,4 +1,7 @@
 <?php
+// session verification
+include_once __DIR__ . "/../../../auth/session.php";
+
 include_once __DIR__ . "/../../../server/model/studentUpdateServer.php";
 
 if (empty($_SESSION["student"])) {

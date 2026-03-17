@@ -1,5 +1,7 @@
 <?php
-session_start();
+// session verification
+include_once __DIR__ . "/../../../auth/session.php";
+
 $rows = $_SESSION["data"] ?? [];
 $errors = $_SESSION["err"] ?? [];
 unset($_SESSION["err"]);

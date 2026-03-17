@@ -1,5 +1,7 @@
 <?php
-session_start();
+// session verification
+include_once __DIR__ . "/../../../auth/session.php";
+
 include_once __DIR__ . "/../../../server/model/studentFetchServer.php";
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,7 @@
 <?php
+// session verification
+include_once __DIR__ . "/../../../auth/session.php";
+
 include_once __DIR__ . "/../../../server/model/studentCreateServer.php";
 ?>
 <!DOCTYPE html>
