@@ -17,6 +17,11 @@ include_once __DIR__ . "/../../../server/model/feeCreateServer.php";
 <body>
     <h1>Fee Page</h1>
 
+    <!-- btn for filter the student by their fee -->
+    <form action="/feeManager/server/model/feeFilterServer.php" method="post">
+        <button type="submit" name="filter">Filter</button>
+    </form>
+
     <?php if (!empty($_SESSION["err"])) {
 
         foreach ($_SESSION["err"] as $err) {
