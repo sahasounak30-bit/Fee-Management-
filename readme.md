@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS fee_payments (
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (received_by) REFERENCES admin(id),
-    UNIQUE KEY unique_fee (student_id) 
 );
 
 1. Students who have PAID
