@@ -202,6 +202,7 @@ $overdue_students = count(array_filter($rows, fn($r) => $r["days_overdue"] > 0))
 
 </div>
 
+<script src="/feeManager/client/public/js/shortcut.js"></script>
 <script src="/feeManager/client/public/js/feeFilter.js"></script>
 
 </body>
