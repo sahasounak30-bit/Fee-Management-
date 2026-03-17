@@ -37,7 +37,7 @@ include_once __DIR__ . "/../../../server/model/feeCreateServer.php";
             </div>
         </div>
         <div class="topbar-right">
-            <a href="/feeManager/client/views/page/index.php" class="btn btn-ghost">← Home</a>
+            <a href="/feeManager/client/views/page/home.php" class="btn btn-ghost">← Home</a>
 
             <!-- Filter button -->
             <form action="/feeManager/server/model/feeFilterServer.php" method="post" style="margin:0;">

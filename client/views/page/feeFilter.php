@@ -41,7 +41,6 @@ $overdue_students = count(array_filter($rows, fn($r) => $r["days_overdue"] > 0))
     </div>
     <div class="topbar-actions">
         <button class="btn btn-ghost" onclick="window.print()">⎙ Print</button>
-        <a href="/feeManager/client/views/page/feeForm.php" class="btn btn-accent">+ New Filter</a>
     </div>
 </div>
 
