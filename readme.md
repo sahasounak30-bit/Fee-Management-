@@ -47,3 +47,49 @@ CREATE TABLE IF NOT EXISTS fee_payments (
     FOREIGN KEY (received_by) REFERENCES admin(id),
     UNIQUE KEY unique_fee (student_id) 
 );
+
+1. Students who have PAID
+SELECT 
+    s.id,
+    CONCAT(s.first_name, ' ', s.last_name) AS student_name,
+    s.phone,
+    f.fee_amount AS total_fee,
+    fp.amount_paid,
+    fp.payment_date,
+    fp.status
+FROM students s
+INNER JOIN fee f ON s.id = f.student_id
+INNER JOIN fee_payments fp ON s.id = fp.student_id
+WHERE fp.status = 'paid';
+
+2. Students who have NOT PAID (includes both pending/partial AND students with no payment record at all)
+SELECT 
+    s.id,
+    CONCAT(s.first_name, ' ', s.last_name) AS student_name,
+    s.phone,
+    f.fee_amount AS total_fee,
+    COALESCE(fp.amount_paid, 0.00) AS amount_paid,
+    COALESCE(fp.status, 'pending') AS status
+FROM students s
+INNER JOIN fee f ON s.id = f.student_id
+LEFT JOIN fee_payments fp ON s.id = fp.student_id
+WHERE fp.status IN ('pending', 'partial') 
+   OR fp.student_id IS NULL;
+
+3. ALL Students with their payment status
+SELECT 
+    s.id,
+    CONCAT(s.first_name, ' ', s.last_name) AS student_name,
+    s.phone,
+    s.admition_date,
+    f.fee_amount                            AS total_fee,
+    COALESCE(fp.amount_paid, 0.00)          AS amount_paid,
+    (f.fee_amount - COALESCE(fp.amount_paid, 0.00)) AS balance_due,
+    COALESCE(fp.status, 'pending')          AS payment_status,
+    fp.payment_date,
+    CONCAT(a.admin_name)                    AS received_by
+FROM students s
+INNER JOIN fee f          ON s.id = f.student_id
+LEFT  JOIN fee_payments fp ON s.id = fp.student_id
+LEFT  JOIN admin a         ON fp.received_by = a.id
+ORDER BY s.id;
